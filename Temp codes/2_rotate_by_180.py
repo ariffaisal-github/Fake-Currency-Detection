@@ -18,7 +18,7 @@ def rotate_images(folder_path):
         rotated_image.save(file_path)
 
 # Replace 'path_to_notes_folder' with the actual path to your notes folder
-notes_folder_path = 'path_to_notes_folder'
+notes_folder_path = './notes'
 
 # Call the function to rotate images
 rotate_images(notes_folder_path)

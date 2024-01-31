@@ -32,9 +32,17 @@ def template_match(template_folder, target_image_path, output_folder):
         
         # Perform template matching
         result = cv2.matchTemplate(target_image, template, cv2.TM_CCOEFF_NORMED)
+        """
+        cv2.TM_CCOEFF_NORMED: Normalized correlation coefficient
+        cv2.TM_CCORR_NORMED: Normalized cross-correlation
+        cv2.TM_SQDIFF_NORMED: Normalized sum of squared difference
+        
+        cv2.TM_CCOEFF_NORMED: This method compares the normalized cross-correlation between the target image and the template image at all possible positions, returning a result map. The algorithm then searches for peaks in this result map to identify potential matches.
+        The cv2.TM_CCOEFF_NORMED method normalizes the cross-correlation coefficient, providing a value between -1 and 1, where 1 indicates a perfect match. The code sets a threshold of 0.35 to filter out matches with a correlation coefficient below this value, effectively selecting regions in the target image where the template is considered a match.
+        """
         
         # Set a threshold to identify matches
-        threshold = 0.8
+        threshold = 0.35
         loc = cv2.findNonZero((result >= threshold).astype(np.uint8))
         
         # Draw rectangles around the matched areas
@@ -56,10 +64,38 @@ templates_folder_path = './sample_templates/'
 output_folder_path = './output/'
 
 # Replace '22.jpg' with the specific image you want to use as the target
-target_image_path = os.path.join(notes_folder_path, '22.jpg')  # taken from 22.jpg, and matches 23.jpg, 
+target_image_path = os.path.join(notes_folder_path, '2.jpg')  # taken from 22.jpg, and matches 23.jpg
 
 # Create the output folder
 os.makedirs(output_folder_path, exist_ok=True)
 
 # Perform template matching
 template_match(templates_folder_path, target_image_path, output_folder_path)
+
+
+
+
+"""
+    Template Matching:
+        Compares a small template to different parts of a larger image.
+        Requires setting a threshold for matching and may need fine-tuning.
+        Can be sensitive to changes in scale, rotation, and lighting.
+
+    CNN YOLO:
+        Processes the entire image at once, making it faster.
+        Detects and localizes multiple objects in a single pass.
+        More robust to variations in scale, rotation, and lighting.
+        Needs a pre-trained model but can generalize well to different scenarios.
+
+Choosing Between Template Matching and CNN YOLO:
+
+    Template Matching:
+        Suitable for simpler scenarios with known templates.
+        Fast and straightforward.
+        May not handle complex scenes or varied object appearances well.
+
+    CNN YOLO:
+        More powerful for complex object detection tasks.
+        Requires more computational resources.
+        Preferred when dealing with various objects, scales, and orientations.
+"""

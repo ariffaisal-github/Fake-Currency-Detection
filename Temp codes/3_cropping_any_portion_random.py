@@ -29,7 +29,7 @@ def crop_and_save_images(folder_path, crop_coordinates):
         cropped_image.save(output_path)
 
 # Replace 'path_to_notes_folder' with the actual path to your notes folder
-notes_folder_path = 'path_to_notes_folder'
+notes_folder_path = './notes'
 
 # Define the crop coordinates (left, upper, right, lower)
 crop_coordinates = (100, 50, 400, 300)

@@ -26,7 +26,7 @@ def rename_files(folder_path):
         serial_number += 1
 
 # Replace 'path_to_notes_folder' with the actual path to your notes folder
-notes_folder_path = 'path_to_notes_folder'
+notes_folder_path = './notes'
 
 # Call the function to rename files
 rename_files(notes_folder_path)

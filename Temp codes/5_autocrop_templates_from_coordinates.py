@@ -29,12 +29,12 @@ def crop_and_save_images(folder_path, crop_coordinates, name):
         cropped_image.save(output_path)
 
 # Replace 'path_to_notes_folder' with the actual path to your notes folder
-notes_folder_path = '../notes'
+notes_folder_path = './notes'
 
 
 # Call the function to crop and save images
 
-for i in range(7):
+for i in range(8):
     name = ""
     if i == 1:
         name = "bangabandhu.jpg"
